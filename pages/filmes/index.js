@@ -2,14 +2,8 @@ import React, { useEffect, useState } from "react";
 import Pagina from "../../components/Pagina";
 import "bootstrap/dist/css/bootstrap.min.css";
 import apiFilmes from "../../services/apiFilmes";
-import {
-  Row,
-  Col,
-  Card,
-  Button,
-  Popover,
-  OverlayTrigger,
-} from "react-bootstrap";
+import { Row, Col, Card } from "react-bootstrap";
+import Link from "next/link";
 
 const index = () => {
   const [filmes, setFilmes] = useState([]);
@@ -34,7 +28,7 @@ const index = () => {
             <Card>
               <Card.Img
                 variant="top"
-                src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
+                src={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`}
                 alt={item.title}
               />
               <Card.Body>
@@ -45,7 +39,7 @@ const index = () => {
                     {new Date(item.release_date).toLocaleDateString()}
                   </strong>
                 </Card.Text>
-                <OverlayTrigger
+                {/* <OverlayTrigger
                   trigger="click"
                   placement="right"
                   overlay={
@@ -56,7 +50,10 @@ const index = () => {
                   }
                 >
                   <Button variant="primary">Detalhes</Button>
-                </OverlayTrigger>
+                </OverlayTrigger> */}
+                <Link href={"/filmes/" + item.id} className="btn btn-danger">
+                  Detalhes
+                </Link>
               </Card.Body>
             </Card>
           </Col>
